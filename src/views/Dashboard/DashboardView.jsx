@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import {
   Grid,
 } from '@material-ui/core';
-import WeatherForm from './components';
+import WeatherForm, { WeatherResult } from './components';
 import useForm from '../../hooks';
+import useFetch from '../../hooks/useFetch';
 
 const DashboardView = () => {
 
@@ -14,6 +15,7 @@ const DashboardView = () => {
 
   const [fireSearch, setFireSearch] = useState(false);
   const [error, setError] = useState(false);
+  const weatherResults = useFetch(fireSearch, setFireSearch, setError, { ...searchParams });
 
   return (
     <Grid
@@ -32,6 +34,14 @@ const DashboardView = () => {
         setFireSearch={setFireSearch}
         handleInputChange={handleInputChange}
       />
+
+      {
+        weatherResults.data !== null && Object.keys(weatherResults.data).length && (
+          <WeatherResult
+            results={weatherResults}
+          />
+        )
+      }
     </Grid>
   );
 };
