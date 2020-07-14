@@ -41,11 +41,11 @@ If everything goes well you should see a message with the test suites and snapts
 
 ## Built With 🛠️
 
+* [Create React App](https://create-react-app.dev/docs/getting-started/) - Bootstrapped with Create React App
 * [React](https://es.reactjs.org/) - JavaScript library for building user interfaces.
 * [Npm](https://www.npmjs.com/) - Package Manager and Installer
-* [Webpack](https://webpack.js.org/) - tatic module bundler for modern JavaScript applications
 
 
 ## Author ✒️
 
-* **Jhonnar Rodriguez** - [jhonnar-rodriguez](https://co.linkedin.com/in/jhonnar-rodriguez)
+* **Jhonnar Rodriguez** - [jhonnar-rodriguez](https://github.com/jhonnar-rodriguez)
