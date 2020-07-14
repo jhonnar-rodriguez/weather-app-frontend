@@ -19,15 +19,26 @@ const useFetch = (fireSearch, setFireSearch, setError, input) => {
         error: null,
       });
 
-      const url = `${process.env.REACT_APP_BACKEND_URL}/data/2.5/find?q=${city}&units=${metricSystem}&mode=json&appid=${process.env.REACT_APP_OPEN_WEATHER_APP_ID}`;
+      const url = `${process.env.REACT_APP_BACKEND_URL}/weather`;
+      const formParams = {
+        city,
+        metric: metricSystem,
+      };
 
-      await fetch(url)
+      await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(formParams),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': process.env.REACT_APP_BACKEND_TOKEN,
+        },
+      })
         .then((resp) => resp.json())
         .then((weather) => {
           setFireSearch(false);
           // Will add the values to the state only if the component is mounted
           if (isMounted.current) {
-            if (weather.count === 0 || parseInt(weather.cod, 10) === 404) {
+            if (weather.success === false || Object.keys(weather.data).length === 0) {
               setError({
                 display: true,
                 message: `The city ${city} cannot be found, please try again.`,
@@ -36,11 +47,12 @@ const useFetch = (fireSearch, setFireSearch, setError, input) => {
               return;
             }
 
-            const { list } = weather;
+            const { data } = weather;
+
             setState({
               loading: false,
               error: null,
-              data: list[0],
+              data,
               system: metricSystem,
             });
           }

@@ -19,6 +19,11 @@ You need to have installed the following programs:
 
     ### `cd weather-app-frontend`
 
+* Setup the variables of the project
+
+    ###  Copy the .env.example.copy
+    ###  Rename the to .env
+    ###  Set the required variables
 
 ## Available Scripts
 

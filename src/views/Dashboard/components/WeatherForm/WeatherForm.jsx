@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  Grid,
   Box,
   Card,
   CardHeader,
@@ -88,11 +87,7 @@ const WeatherForm = (props) => {
   const { city, metricSystem } = searchParams;
 
   return (
-    <Grid
-      item
-      xs={12}
-      md={6}
-    >
+    <>
       {
         typeof error !== 'undefined' && error.display && (
           <Box m={2}>
@@ -172,7 +167,7 @@ const WeatherForm = (props) => {
           </form>
         </CardContent>
       </Card>
-    </Grid>
+    </>
   );
 };
 

@@ -18,31 +18,37 @@ const DashboardView = () => {
   const weatherResults = useFetch(fireSearch, setFireSearch, setError, { ...searchParams });
 
   return (
-    <Grid
-      container
-      spacing={3}
-      style={{
-        minHeight: '80vh',
-        color: 'white',
-      }}
-    >
-      <WeatherForm
-        error={error}
-        setError={setError}
-        fireSearch={fireSearch}
-        searchParams={searchParams}
-        setFireSearch={setFireSearch}
-        handleInputChange={handleInputChange}
-      />
-
-      {
-        weatherResults.data !== null && Object.keys(weatherResults.data).length && (
-          <WeatherResult
-            results={weatherResults}
+    <>
+      <Grid
+        container
+        spacing={3}
+        style={{
+          minHeight: '80vh',
+          color: 'white',
+          flexGrow: 1,
+        }}
+      >
+        <Grid item xs={12} sm={4}>
+          <WeatherForm
+            error={error}
+            setError={setError}
+            fireSearch={fireSearch}
+            searchParams={searchParams}
+            setFireSearch={setFireSearch}
+            handleInputChange={handleInputChange}
           />
-        )
-      }
-    </Grid>
+        </Grid>
+
+        {
+          weatherResults.data !== null && Object.keys(weatherResults.data).length && (
+            <WeatherResult
+              results={weatherResults}
+            />
+          )
+        }
+
+      </Grid>
+    </>
   );
 };
 
